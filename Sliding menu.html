@@ -1,0 +1,102 @@
+
+<html>
+
+    <head>
+        <title>tagdrop</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+        <script>
+            (function($){
+                $.fn.extend({
+                    tagdrop: function(options) {
+                        var defaults = {
+                            tagPaddingTop: '90px',
+                            tagDefaultPaddingTop: '30px',
+                            bgColor: '#B1CCED',
+                            bgMoverColor: '#7FB0F0',
+							textColor: '#616161',
+							textDefaultColor: '#616161'
+                        };
+                        var options = $.extend(defaults, options);
+
+                        return this.each(function() {
+                            var obj = $(this);
+                            var li_items = $("li", obj);
+                            $("li", obj).css('background-color', options.bgColor);
+                            
+                            li_items.mouseover(function(){
+                                $(this).animate({paddingTop: options.tagPaddingTop}, 300);
+                                $(this).css('background-color', options.bgMoverColor);
+                                $(this).css('color', options.textColor);
+                            }).mouseout(function() {
+                                $(this).animate({paddingTop: options.tagDefaultPaddingTop}, 500);
+                                $("li",$(this).parent()).css('background-color', options.bgColor);
+                                $("li",$(this).parent()).css('color', options.textDefaultColor);
+                            });
+                        });
+                    }
+                });
+            })(jQuery);
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.menu').tagdrop({tagPaddingTop: '60px',bgColor: '#E5e5e5',bgMoverColor: '#7FB0F0',textColor: '#616161'});
+            });
+        </script>
+        <style>
+            body {
+                margin:0;
+                padding:0;
+            }
+         
+            #nav li {margin: 0; padding: 0;display: inline;list-style-type: none;font-size: 12px;}
+            #nav a:link, #nav a:visited {
+               
+            }
+            #nav a:hover {color: #fff;	background:#616161;}
+            #nav a:visited.active, #nav a:link.active {background-color: #fff;color: #616161;}
+
+            .menuItem{
+                list-style:none;
+                margin: 0;
+				float:right;
+            }
+            .menulogo{
+                   list-style:none;
+                margin: 0;
+                float: left;
+            }
+
+            .menu li {       margin:0 auto;
+                cursor:pointer;
+                height:60px;
+                padding:30px 5px 5px 5px;
+                margin:0px 3px 0px 3px;
+                -moz-border-radius: 0px 0px 10px 10px;
+                -webkit-border-radius:0px 0px 10px 10px;
+                -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                
+                color: #616161;
+                text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+                font-family: "Georgia";
+                font-size:14px;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <ul class="menu">
+            <li class="menulogo"> <a href="wademy.in"> <img src="firefox.png" height="67px" width="67px"> </a> </li>
+            <li class="menuItem">About us</li>
+            <li class="menuItem">Contacts</li>
+            <li class="menuItem">Others</li>
+            <li class="menuItem">Products</li>
+			<li class="menuItem">Portfolio</li>
+			<li class="menuItem">Testemonies</li>
+        </ul>
+    </body>
+</html>
+
+
+
